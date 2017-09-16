@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非父子组件间的通信</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="itany">
+		<my-a></my-a>
+		<my-b></my-b>
+		<my-c></my-c>
+	</div>
+
+	<template id="a">
+		<div>
+			<h3>A组件：{{name}}</h3>
+			<button @click="send">将数据发送给C组件</button>
+		</div>
+	</template>
+
+	<template id="b">
+		<div>
+			<h3>B组件：{{age}}</h3>
+			<button @click="send">将数据发送给C组件</button>
+
+		</div>
+	</template>
+
+	<template id="c">
+		<div>
+			<h3>C组件：{{name}},{{age}}</h3>
+		</div>
+	</template>
+
+</body>
+<script>
+	var Event = new Vue();//定义一个空的Vue实例
+	var A = {
+				template:'#a',
+				data(){
+					return {
+						name:'tom'
+					}
+				},
+				methods:{
+					send(){
+						Event.$emit('data-a',this.name);
+					}
+				}
+			};
+	var B = {
+				template:'#b',
+				data(){
+					return {
+						age:20
+					}
+				},
+				methods:{
+					send(){
+						Event.$emit('data-b',this.age);
+					}
+				}
+			};
+	var C = {
+				template:'#c',
+				data(){
+					return {
+						name:'',
+						age:0
+					}
+				},
+				mounted(){//在模板编译完成后执行
+					Event.$on('data-a',name=>{
+						this.name = name;
+					});
+					Event.$on('data-b',age=>{
+						this.age = age;
+					})
+				}
+			}
+
+	var vm = new Vue({ //父组件
+		el:'#itany',
+		components:{
+			'my-a':A,
+			'my-b':B,
+			'my-c':C
+		}
+			
+	});
+</script>
+</html>

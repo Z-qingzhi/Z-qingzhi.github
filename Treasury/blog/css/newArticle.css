@@ -1,0 +1,170 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+body {
+	background: url(../src/newArticle.jpg) repeat;
+}
+a {
+	text-decoration: none;
+}
+
+ul li,
+ol li {
+	list-style: none;
+}
+.clear {
+	clear: both;
+}
+#header {
+	min-width: 1300px;
+}
+.logo {
+	float: left;
+	color: #666;
+	font-family: arial;
+	font-size: 30px;
+	font-weight: bold;
+	margin-left: 100px;
+	margin-top: 50px;
+}
+.menager {
+	width: 500px;
+	float: right;
+}
+.menager ul{
+	margin-top: 20px;
+	width: 500px;
+}
+.menager ul li{
+	float: left;
+}
+.menager ul li a{
+	display: inline-block;
+	padding-right: 20px;
+	padding-left: 20px;
+	border-right: 1px dotted #666;
+	font-size: 14px;
+	color: #666;
+}
+.menager ul li a:nth-of-type(3) {
+	border: none;
+}
+.username {
+	color: #666;
+	font-family: arial;
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 100px;
+	margin-top: 30px;
+}
+
+#container {
+	width: 100%;
+	min-width: 1400px;
+	margin-top: 50px;
+}
+#container #left_container{
+	width: 20%;
+	height: 1200px;
+	
+	float: left;
+}
+#container #left_container .left_content {
+	width: 90%;
+	height: inherit;
+	margin-top: 30px;
+}
+#container #right_container{
+	width: 75%;
+	float: left;
+	margin-left: 20px;
+}
+#right_container .table_li {
+	width: 100%;
+}
+#right_container .table_li li {
+	padding: 20px;
+	float: left;
+}
+#right_container .table_li a {
+	color: #342121;
+	font-family: "arial";
+	font-weight: bold;
+	font-size: 18px;
+}
+#right_container .table_li a:hover {
+	color: #9B3434;
+}
+.classify {
+	width: 100%;
+}
+.classify ul {
+	width: 120px;
+	float: left;
+	margin-left: 20px;
+}
+.mLeft2_mTop5{
+	margin-left: 20px;
+	margin-top: 50px;
+}
+.mLeft2_mTop2{
+	margin-left: 20px;
+	margin-top: 20px;
+}
+.mLeft5_mTop2{
+	margin-left: 50px;
+	margin-top: 20px;
+}
+.mLeft2_mTop1{
+	margin-left: 20px;
+	margin-top: 10px;
+}
+.title input {
+	width: 90%;
+	height: 30px;
+}
+.son {
+	border-bottom: 1px dashed #666;
+	padding-bottom: 5px;
+	color: #765555;
+	font-family: arial;
+	font-size: 16px;
+}
+.son2 {
+	padding-bottom: 5px;
+	color: #765555;
+	font-family: arial;
+	font-size: 16px;
+}
+.son3 {
+	color: #311515;
+	font-family: arial;
+	font-size: 14px;
+}
+.son4 {
+	padding-bottom: 5px;
+	color: #765555;
+	font-family: arial;
+	font-size: 16px;
+	border-bottom: 3px solid #765555;
+}
+.title span {
+	color: #765555;
+	font-family: arial;
+	font-size: 16px;
+}
+
+#article_content {
+	width: 91.7%;
+	height: 600px;
+	background: #fff;
+	box-shadow: 0 1px 2px 2px #ccc;
+}
+.option_0 li a{
+	color: #311515;
+	font-family: arial;
+	font-size: 14px;
+}

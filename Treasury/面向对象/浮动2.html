@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{padding:10px; background:gray;}
+		/*.fix{*zoom:1;}*/
+		.fix:after{display:block; content:"clear"; height:0; clear:both; overflow:hidden; visibility:hidden;}
+		.l{float:left;width:100px;height:100px;background: red;margin-left: 5px;}
+	</style>
+</head>
+<body>
+	<div class="box fix">
+	    <div class="l"></div>
+	    <div class="l"></div>
+	    <div class="l"></div>
+	</div>
+</body>
+</html>

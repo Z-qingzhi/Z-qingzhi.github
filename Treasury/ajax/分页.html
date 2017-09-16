@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<body>
+	<div class="row_p00"></div>
+</body>
+<script>
+	window.onload = function(){
+		/***********************分页start******************************/
+
+		function createPage(obj, id,cla,setArr) {
+			if(window[id] != null) {
+				return;
+
+			}
+			window[id] = new initDiv(obj, id,cla,setArr);
+			window[id].createDiv();
+		}
+
+		function initDiv(obj, id,cla,setArr) {
+			    this.obj = obj,
+				this.id = id,
+				this.cla = cla||"pageSpan",//默认class为pageSpan
+				this.setArr = setArr||"11111111",//1是显示，0是隐藏
+				this.callBackFn = function(){},
+				this.fn = function(){},
+				this.errorFn = function(){},
+				
+				this._data = {
+					"URL": null,
+					"sca01": 0,
+					"pageIndex": 1,
+					"pageNum": 50
+				},
+				this.page = {
+					"pageSum": 0,
+					"pageNum": 50,
+					"pageIndex": 1,
+					"pageCount": 0
+				}
+		};
+		initDiv.prototype.createDiv = function() {
+			var that = this;
+			if(this.obj != null) {
+				var _str = "<div rel=" + this.id + ">";
+				_str += "<span rel='-100'>记录数0条</span>";
+				_str += "<span rel='-101'>每页0条</span>";
+				_str += "<span rel='-102'>第<select><option>0</option></select>页</span><span rel='-103'>共0页</span>";
+				_str += "<span rel='-1'><a href='javascript:void(0)'>上一页</a></span>";
+				_str += "<span rel='1'><a href='javascript:void(0)'>下一页</a></span>";
+				_str += "<span rel='3'><a href='javascript:void(0)'> 首页</a></span>";
+				_str += "<span rel='4'><a href='javascript:void(0)'>尾页</a></span>";
+
+				_str += "</div>";
+				this.obj.append(_str);
+				this.obj.find('span').each(function(index) {
+					$(this).addClass(that.cla);
+					this.onclick = function() {
+						pageFJ(this);
+					}
+					//设置是否显示
+					if(that.setArr.charAt(index)=="0"){
+						$(this).hide();
+					}
+				});
+				//select框change到选中页
+				this.obj.find('span[rel=-102] select').on("change",function(){
+					var _obj = window[that.id];
+					_obj.page["pageIndex"] = $(this).val()*1+1;
+					pageFJ($(this).closest("div").find("span[rel=-1]"));//借用上一页
+				});
+						
+			};
+
+		};
+		initDiv.prototype.setData = function(_obj) {
+			if(_obj) {
+				this._data = _obj;
+			}
+		};
+		initDiv.prototype.getData = function() {
+			return this._data;
+		};
+		initDiv.prototype.setPage = function(_page) {
+			if(_page) {
+				this.page = _page;
+			}
+		};
+		initDiv.prototype.getPage = function() {
+			return this.page;
+		};
+
+		//$(function() {
+		//	createPage($("#pageParent1"), "ppp1");
+		//	createPage($("#pageParent2"), "ppp2");
+		//})
+
+		function pageFJ(obj) {
+
+			var rel = $(obj).attr('rel') * 1;
+			var winID = $(obj).parent().attr('rel');
+			var _obj = window[winID];
+			if(_obj.page["pageSum"] * 1 < 1) {
+				return;
+			}
+			
+			switch(rel) {
+				case -1:
+					//上一页
+
+					if(_obj.page["pageIndex"] * 1 <= 1) return;
+
+					var pageIndex = _obj.page["pageIndex"] * 1 - 1; //当前页+1
+					var _URLData = _obj._data;
+					_URLData["pageIndex"] = pageIndex;
+					_obj.setData(_URLData); //重置URL
+
+					ajax_(winID,_obj.callBackFn,_obj.fn,_obj.errorFn);
+					break;
+				case 1:
+					//下一页
+					var pageIndex = _obj.page["pageIndex"] * 1; //当前页
+					if(pageIndex >= _obj.page["pageCount"] * 1) return;
+
+					var _URLData = _obj._data;
+					_URLData["pageIndex"] = pageIndex + 1;
+					_obj.setData(_URLData); //重置URL
+
+					ajax_(winID,_obj.callBackFn,_obj.fn,_obj.errorFn);
+					break;
+				case 3:
+					//首页
+					var pageIndex = _obj.page["pageIndex"] * 1; //首页
+					if(pageIndex==1) return;
+
+					var _URLData = _obj._data;
+					_URLData["pageIndex"] = 1;
+					_obj.setData(_URLData); //重置URL
+
+					ajax_(winID,_obj.callBackFn,_obj.fn,_obj.errorFn);
+					break;
+				case 4:
+					//尾页
+					var pageIndex = _obj.page["pageIndex"] * 1; //当前页
+					if(pageIndex == _obj.page["pageCount"] * 1) return;
+
+					var _URLData = _obj._data;
+					_URLData["pageIndex"] = _obj.page["pageCount"]*1 ;
+					_obj.setData(_URLData); //重置URL
+
+					ajax_(winID,_obj.callBackFn,_obj.fn,_obj.errorFn);
+					break;
+			}
+
+		}
+		/**
+		 * 通过后台返回json数据，重新设置page组件
+		 * ***/
+		function dataToCompent(msg, fnDiv) {
+			var crm = window[fnDiv]._data["_crm_"] || "crm_";
+			var sumPage = msg[crm + "sumPage"] || false;
+			var pageSum = 0;
+			var pageNum = 0;
+			var pageIndex = 1;
+			var pageCount = 0;
+			
+			if(sumPage) {
+				window[fnDiv].setPage(sumPage);
+				var _URLData = window[fnDiv]._data;
+				_URLData["pageIndex"] = sumPage["pageIndex"];
+				window[fnDiv].setData(_URLData);
+				pageSum = window[fnDiv]["page"]["pageSum"];
+				pageNum = window[fnDiv]["page"]["pageNum"];
+				pageIndex = window[fnDiv]["page"]["pageIndex"];
+				pageCount = window[fnDiv]["page"]["pageCount"];
+
+			} else {
+				window[fnDiv].setPage({
+					"pageSum": 0,
+					"pageNum": 50,
+					"pageIndex": 1,
+					"pageCount": 0
+				});
+				var _URLData = window[fnDiv]._data;
+				_URLData["pageIndex"] = 1;
+				window[fnDiv].setData(_URLData);
+			}
+
+			$(window[fnDiv].obj).find("span[rel='-100']").text("记录数" + pageSum + "条");
+			$(window[fnDiv].obj).find("span[rel='-101']").text("每页" + pageNum + "条");
+		//	$(window[fnDiv].obj).find("span[rel='-102']").text("第" + pageIndex + "页");
+			$(window[fnDiv].obj).find("span[rel='-103']").text("共" + pageCount + "页");
+			$(window[fnDiv].obj).find("span[rel='-102'] select").children().remove();
+			var Option = ""
+			for(var i=1;i<pageCount+1;i++){
+				Option += "<option value='"+i+"'>"+i+"</option>"
+			}
+			$(window[fnDiv].obj).find("span[rel='-102'] select").append(Option);
+			$(window[fnDiv].obj).find("span[rel='-102'] select option").each(function(){
+				if($(this).val() == pageIndex){
+					$(this).attr("selected",true);
+				}
+			});
+		}
+
+		createPage($(".row_p00").eq(0), "row_p01_ppp2","zz_span","11111111");
+
+	}
+</script>
+</html>

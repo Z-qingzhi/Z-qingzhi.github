@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定义组件的两种方式</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="itany">
+		<hello></hello>
+		<world></world>
+	</div>
+</body>
+<script>
+	// 1.方式一：先创建组件构造器，然后由组件构造器创建组件
+	// 1.使用Vue。extend()创建一个组件构造器
+	var MyComponent = Vue.extend({
+		template:'<h3>Hello World</h3>'
+	});
+	//2.使用Vue.component(标签名,组件构造器)根据组件构造器老创建组件
+	Vue.component('hello',MyComponent);
+
+	// 1.方式二：直接创建组件
+	Vue.component('world',{
+		template:'<h3>Hello World</h3>'
+	})
+
+
+
+
+	var vm = new Vue({
+		el:'#itany',
+		data:{
+
+		}
+	});
+</script>
+</html>

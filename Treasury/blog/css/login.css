@@ -1,0 +1,234 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-size: 16px;
+}
+body {
+	/*background: url(src/login_b.jpg) no-repeat;*/
+}
+a {
+	text-decoration: none;
+}
+
+ul li,
+ol li {
+	list-style: none;
+}
+
+header {
+	height: 50px;
+	width: 100%;
+	background: #666;
+}
+
+#login_main {
+	width: 450px;
+	height: auto;
+	position: absolute;
+	left: 37%;
+	top: 10%;
+}
+
+#login_form {
+	width: 400px;
+	border: 1px solid #e1e1e1;
+	height: 450px;
+	position: relative;
+}
+
+.userlogin {
+	width: 360px;
+	margin: 30px auto;
+}
+
+.userlogin p {
+	color: #fff;
+	font-size: 20px;
+}
+
+.userlogin form {
+	margin-top: 20px;
+}
+
+.userlogin form .shuru {
+	width: 280px;
+	height: 40px;
+	/*background: #fff;*/
+	/*border: 2px solid #e1e1e1;*/
+	border: none;
+	text-indent: 43px;
+	margin-bottom: 20px;
+	
+}
+
+button {
+	width: 280px;
+	height: 40px;
+	background: #293B67;
+	color: #fff;
+	margin-top: 20px;
+	border: none;
+}
+
+.icon-user {
+	position: absolute;
+	left: 35px;
+	top: 90px;
+	z-index: 5;
+	background-image: url(../src/login-locked-icon.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	width: 20px;
+	height: 20px;
+}
+.icon-pass {
+	position: absolute;
+	left: 35px;
+	top: 155px;
+	z-index: 5;
+	background-image: url(../src/login-key-icon.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	width: 20px;
+	height: 20px;
+}
+.third_party {
+	width: 400px;
+	border-top: 1px solid #ccc ;
+	background: #FFFFFF;
+}
+.third_party p {
+	margin-left: 20px;
+	margin-top: 20px;
+	color: #666;
+	font-size: 13px;
+}
+.third_party_splite ul {
+	margin-top: 20px;
+	margin-left: 20px;
+	width: inherit;
+	height: 40px;
+}
+.third_party_splite ul li{
+	width: 44px;
+	height: 40px;
+	float: left;
+}
+.third_party_splite ul li span {
+	display: block;
+	width: 32px;
+	height: 32px;
+}
+.s1 {
+		background: url(../src/login-third-party.png) 0px 0px;
+	}
+.s2 {
+		background: url(../src/login-third-party.png) -37px 0px;
+	}
+.s3 {
+		background: url(../src/login-third-party.png) -74px 0px;
+	}
+.s4 {
+		background: url(../src/login-third-party.png) -112px 0px;
+	}
+.s5 {
+		background: url(../src/login-third-party.png) -149px 0px;
+	}
+.s6 {
+		background: url(../src/login-third-party.png) -186px 0px;
+	}
+.s7 {
+		background: url(../src/login-third-party.png) -224px 0px;
+	}
+.rollin {
+	width: 400px;
+	height: 42px;
+	background: #FFFFFF;
+}
+.rollin p {
+	color: #666;
+	margin-left: 20px;
+}
+.rollin p a {
+	color: #2F8EB0;
+}
+/*尾部*/
+#foot {
+	width: 1300px;
+	height: 300px;
+	margin-top: 50px;
+}
+#foot .footcontent {
+	width: 1000px;
+	margin: 0 auto;
+}
+#foot .footcontent ul{
+	width: 1000px;
+	height: 50px;
+	/*line-height: 50px;
+	text-align: center;*/
+	margin-left: 25%;
+}
+#foot .footcontent ul li{
+	height: 50px;
+	float: left;
+	margin-left: 10px;
+	
+}
+#foot .footcontent .b {
+	border-top: 1px solid #ccc;
+}
+#foot .footcontent .a li a {
+	border-right: 1px solid #ccc;
+	display: inline-block;
+	padding-right: 10px;
+	color: #666;
+	font-size: 16px;
+}
+#foot .footcontent .a li a:hover {
+	color: #4D62A5;
+}
+#foot .footcontent .b li a:hover {
+	color: #F05540;
+}
+#foot .footcontent .b li {
+	margin-top: 20px;
+}
+#foot .footcontent .b li a {
+	border-right: 1px solid #ccc;
+	display: inline-block;
+	padding-right: 10px;
+	color: #666;
+	font-size: 14px;
+}
+.a1,.a2,.a3,.a4,.a5 {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+}
+.a1,.a2{
+	background: url(../src/qq_icon.png) 0px 0px;
+}
+.a3{
+	background: url(../src/weibo_icon.png) 0px 0px;
+}
+.a4{
+	background: url(../src/mail_icon.png) 0px 0px;
+}
+.a5{
+	background: url(../src/phone_icon.png) 0px 0px;
+}
+.a1:hover {
+	background: url(../src/qq_icon.png) 0px -35px;
+}
+.a2:hover {
+	background: url(../src/qq_icon.png) 0px -35px;
+}
+.a3:hover {
+	background: url(../src/weibo_icon.png) 0px -35px;
+}
+.a4:hover {
+	background: url(../src/mail_icon.png) 0px -35px;
+}

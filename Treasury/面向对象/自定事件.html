@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+	window.onload = function(){
+		// window.addEventListener('show',function(){
+		// 	alert(1);
+		// },false);
+		// window.addEventListener('show',function(){
+		// 	alert(2);
+		// },false);
+		// window.addEventListener('show',function(){
+		// 	alert(3);
+		// },false);
+		
+		// // show();
+		
+		
+		var oDiv = document.getElementById('div1');
+		var oSpan = document.getElementById('span1');
+
+		bindEvent(oDiv,'click',function(){
+			alert(1);
+		})
+		bindEvent(oDiv,'click',function(){
+			alert(2);
+		})
+		bindEvent(oSpan,'show',function(){
+			alert(3);
+		})
+		bindEvent(oSpan,'show',function(){
+			alert(4);
+		})
+
+		fireEvent(oSpan,'show');
+
+
+		function bindEvent(obj,events,fn){
+
+			obj.listeners = obj.listeners || {};
+			obj.listeners[events] = obj.listeners[events] || [];
+			obj.listeners[events].push(fn);
+
+			if(obj.addEventListener){
+				obj.addEventListener(events,fn,false);
+			}else{
+				obj.attachEvent('on'+events,fn)
+			}
+		}
+		
+		
+		function fireEvent(obj,events){ //主动触发自定义事件
+			for(var i=0;i<obj.listeners[events].length;i++){
+				obj.listeners[events][i]();
+			}
+		}
+		
+	}
+		
+</script>
+<body>
+	<div id="div1">div</div>
+	<span id="span1">span</span>
+</body>
+</html>

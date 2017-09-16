@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+	<script src="lb.js"></script>
+	<script src="lbop.js"></script>
+	<style>
+		*{margin:0px;padding:0px;}
+		ul,li{list-style: none;}
+		#box,#box2,#box3,#box4{margin:10px auto;}
+		.lh_btn span{
+			display: inline-block;
+			background-color: #ccc;
+			border-radius: 50%;
+			z-index: 999;
+			cursor: pointer;
+			
+		}
+		.lh_prev,.lh_next{
+			position: absolute;
+   			top: 50%;
+   			z-index: 999;
+   			width: 41px;
+   			height: 69px;
+   			margin-top: -35px;
+   			text-indent: -9999px;
+   			overflow: hidden;
+   			outline: 0;
+		}
+		img{width:100%;height:100%;}
+		.lh_btn span.on{
+			background: red;
+			border-color: rgba(255,255,255,0.7);
+		}
+		.lh_prev{
+			left: 0px;
+			background: url(./image/icon-slides.png) no-repeat -84px 50%;
+		}
+		.lh_next{
+			right: 0px;
+			background: url(./image/icon-slides.png) no-repeat -125px 50%;
+		}
+		.lh_prev:hover{
+			background: url(./image/icon-slides.png) no-repeat 0px 50%;
+		}
+		.lh_next:hover{
+			background: url(./image/icon-slides.png) no-repeat -41px 50%;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="lh_picture"></div>
+		<div class="lh_btn"></div>
+		<a href="javascript:;" class="lh_prev">上一张</a>
+    	<a href="javascript:;" class="lh_next">下一张</a>
+	</div>
+	<div id="box2">
+		<div class="lh_picture"></div>
+		<div class="lh_btn"></div>
+		<a href="javascript:;" class="lh_prev">上一张</a>
+    	<a href="javascript:;" class="lh_next">下一张</a>
+	</div>
+	<div id="box3">
+		<div class="lh_picture"></div>
+		<div class="lh_btn"></div>
+		<a href="javascript:;" class="lh_prev">上一张</a>
+    	<a href="javascript:;" class="lh_next">下一张</a>
+	</div>
+	<div id="box4">
+		<div class="lh_picture"></div>
+		<div class="lh_btn"></div>
+		<a href="javascript:;" class="lh_prev">上一张</a>
+    	<a href="javascript:;" class="lh_next">下一张</a>
+	</div>
+</body>
+<script>
+	$(function(){
+		var lh = new lhLb();
+		lh.init('#box',{
+			img:['image/1.jpg','image/2.jpg','image/3.jpg','image/4.jpg','image/5.jpg','image/6.jpg','image/7.jpg'],
+			width:400,
+			height:180,
+			speed:500,
+			autoPlay:true,
+			autoPlayTime:1000,
+			passBtn:true,
+			wBt:10,//按钮宽
+			hBt:10//按钮高
+		});
+		lh.addText(0,'badyLoveyou',{left:0,top:0,color:'red',fontSize:24}).addText(0,'badyLoveyou',{left:50,top:50,color:'yellow',fontSize:24}).addText(6,'bady',{left:0,top:0,color:'red',fontSize:24}).addText(2,'badyLoveyou',{left:20,top:50,color:'red',fontSize:24});
+
+
+		var lhbb = new lhLb();
+		lhbb.init('#box2',{
+			img:['image/1.jpg','image/2.jpg','image/3.jpg','image/4.jpg','image/5.jpg','image/6.jpg','image/7.jpg'],
+			width:400,
+			height:200,
+			speed:500,
+			autoPlay:true,
+			autoPlayTime:5000,
+			passBtn:false,
+			wBt:6,//按钮宽
+			hBt:6//按钮高
+		});
+		lhbb.addText(0,'111111111',{left:50,top:50,color:'yellow',fontSize:40})
+
+
+		var lhbb1 = new lhLbop();
+		lhbb1.init('#box3',{
+			img:['image/1.jpg','image/2.jpg','image/3.jpg','image/4.jpg','image/5.jpg'],
+			width:800,
+			height:400,
+			speed:500,
+			autoPlay:false,
+			autoPlayTime:2000,
+			passBtn:true,
+			wBt:20,//按钮宽
+			hBt:20//按钮高
+		});
+		lhbb1.addText(0,'badyLoveyou1',{left:50,top:50,color:'yellow',fontSize:24}).addText(0,'badyLoveyou2',{left:100,top:150,color:'yellow',fontSize:24}).addText(1,'bady2',{left:50,top:50,color:'#ff6700',fontSize:54}).addText(2,'badyLoveyou3',{left:20,top:50,color:'yellow',fontSize:24});
+
+
+		var lhbb2 = new lhLbop();
+		lhbb2.init('#box4',{
+			img:['image/1.jpg','image/2.jpg'],
+			width:500,
+			height:200,
+			speed:500,
+			autoPlay:true,
+			autoPlayTime:1000,
+			passBtn:true,
+			wBt:10,//按钮宽
+			hBt:10//按钮高
+		});
+		lhbb2.addText(1,'啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊',{left:20,top:50,color:'yellow',fontSize:24})
+
+	})
+
+</script>
+</html>

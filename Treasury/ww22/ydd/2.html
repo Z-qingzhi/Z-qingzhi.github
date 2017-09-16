@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	html{font-size:20px}
+		@media screen and (min-width:300px) and (max-width:400px){html{font-size:25px !important;}}
+		@media screen and (min-width:401px) and (max-width:428px){html{font-size:26.75px !important;}}
+		@media screen and (min-width:429px) and (max-width:481px){html{font-size:30px !important;}}
+		@media screen and (min-width:482px) and (max-width:569px){html{font-size:35px !important;}}
+		@media screen and (min-width:570px) and (max-width:641px){html{font-size:40px !important;}}
+		@media screen and (min-width:642px) and (max-width:751px){html{font-size:50px !important;}}
+		@media screen and (min-width:750px) and (max-width:1080px){html{font-size:60px !important;}}
+		@media screen and (min-width:1081px){html{font-size:70px}}
+		#box{
+			width:1rem;
+			height:1rem;
+			background-color: red;
+		}
+</style>
+<body>
+	<div id="box"></div>
+	<div id="xs" style="font-size: 30px;"></div>
+</body>
+<script>
+	window.onload = function(){
+		changeDivHeight();
+		 window.onresize=function(){  
+             changeDivHeight();  
+        }  
+	}
+
+	function changeDivHeight(){
+		var a = document.getElementById('xs');
+		var myDiv = document.getElementsByTagName('html')[0];
+		 var finalStyle = myDiv.currentStyle ? myDiv.currentStyle : document.defaultView.getComputedStyle(myDiv, null);
+		a.innerText = finalStyle.fontSize;
+	}
+
+	
+</script>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#div1{height:100px;width:100px;background-color: red;position: absolute;}
+		#div2{height:100px;width:100px;background-color: yellow;position: absolute;left:100px;}
+		#div3{height:100px;width:100px;background-color: blue;position: absolute;left:200px;}
+		#div4{height:100px;width:100px;background-color: green;position: absolute;left:300px;}
+
+	</style>
+	<script>
+		// 组件开发：多组对象，像兄弟之间的关系（代码复用的一种形式）;
+		window.onload = function(){
+			var p1 = new Drag();
+			p1.init({
+				id:'div1',
+			});
+
+			var p2 = new Drag();
+			p2.init({
+				id: 'div2'
+			});
+			bindEvent(p2,'toDown',function(){
+				document.title = 'hello';
+			});
+
+			var p3 = new Drag();
+			p3.init({
+				id: 'div3'
+			});
+			bindEvent(p3,'toDown',function(){
+				document.title = '妙味';
+			});
+			bindEvent(p3,'toUp',function(){
+				document.title = '课堂';
+			});
+
+			var p4 = new Drag();
+			p4.init({
+				id: 'div4'
+			});
+			bindEvent(p4,'toUp',function(){
+				document.title = 'byebye';
+			});
+
+		}
+		function Drag(){
+			this.obj = null;
+			this.disX = 0;
+			this.disY = 0;
+			this.settings = { //默认参数
+				toDown:function(){},
+				toUp:function(){}
+			}
+		}
+
+		Drag.prototype.init = function(opt){
+			// console.log(opt)
+			var This = this;
+			this.obj = document.getElementById(opt.id);
+			extend(this.settings , opt);
+			// console.log(this.settings);
+			this.obj.onmousedown = function(ev){
+				var ev = ev || window.event;
+
+				fireEvent(This , 'toDown');
+
+				This.fnDown(ev);
+				This.settings.toDown();
+
+				document.onmousemove = function(ev){
+					var ev = ev || window.event;
+					This.fnMove(ev);
+				}
+				document.onmouseup = function(ev){
+
+					fireEvent(This , 'toUp');
+
+					This.fnUp();
+					This.settings.toUp();
+				}
+				return false;
+
+			}
+		}
+
+		Drag.prototype.fnDown = function(ev){
+			this.disX = ev.clientX - this.obj.offsetLeft;
+			this.disY = ev.clientY - this.obj.offsetTop;
+		}
+		Drag.prototype.fnMove = function(ev){
+			// this.obj.style.left = ev.clientX - this.disX + 'px';
+			// this.obj.style.top = ev.clientY - this.disY + 'px';
+			var L = ev.clientX - this.disX;
+			var T = ev.clientY - this.disY;
+			if(L<0){
+				L = 0;
+			}else if(L>document.documentElement.clientWidth - this.obj.offsetWidth){
+				L = document.documentElement.clientWidth - this.obj.offsetWidth;
+			}
+
+			if(T<0){
+				T = 0;
+			}else if(T>document.documentElement.clientHeight - this.obj.offsetHeight){
+				T = document.documentElement.clientHeight - this.obj.offsetHeight
+			}
+			this.obj.style.left = L + 'px';
+			this.obj.style.top = T + 'px';
+		}
+		Drag.prototype.fnUp = function(ev){
+			document.onmousemove = null;
+			document.onmouseup = null;
+		}
+		function extend(obj1,obj2){
+			for(var attr in obj2){
+				obj1[attr] = obj2[attr];
+			}
+		}
+
+		function bindEvent(obj,events,fn){
+
+			obj.listeners = obj.listeners || {};
+			obj.listeners[events] = obj.listeners[events] || [];
+			obj.listeners[events].push(fn);
+			console.log(obj)
+
+			if(obj.nodeType){
+				if(obj.addEventListener){
+					obj.addEventListener(events,fn,false);
+				}else{
+					obj.attachEvent('on'+events,fn)
+				}
+			}
+			
+		}
+		
+		
+		function fireEvent(obj,events){ //主动触发自定义事件
+			console.log(obj)
+			if(obj.listeners && obj.listeners[events]){
+				for(var i=0;i<obj.listeners[events].length;i++){
+					obj.listeners[events][i]();
+				}
+			}
+			
+		}
+	</script>
+</head>
+<body>
+	<div id="div1"></div>
+	<div id="div2"></div>
+	<div id="div3"></div>
+	<div id="div4"></div>
+</body>
+</html>

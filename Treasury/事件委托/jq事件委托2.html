@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<style>
+ li{
+  height:30px;
+  background-color: #ff6700;
+  margin-bottom:2px;
+ }
+</style>
+<body>
+	    <div id="myTable" style="width:500px;height:500px;background-color: red;">  
+          <ul style="height:200px;background-color: yellow;">  
+              <li>111</li>  
+              <li>222</li>  
+              <li>333</li>  
+              <li>444</li>  
+          </tr>  
+      </ul>  
+</body>
+<script type="text/javascript">  
+    $(function(){         
+        // $("#myTable li").click(function(){    
+        //    alert($(this).html()); //普通写法，如果有100个td元素，就要绑定100次事件，十分浪费性能  
+        // })  
+          
+  
+          
+        // $("#myTable").click(function(e){    //这种点击方式怎么排除父元素？？？？  
+        //     console.log(e.target);  
+        //     var $clicked = $(e.target);    //e.target 捕捉到触发的元素  
+        //     console.log(e.target.nodeName);  //结果为大写，用toLowerCase()  转换为小写  
+        //     e.target.nodeName.toLowerCase() == 'ul' ? alert('我点中table了')  : $clicked.html();  //排除父元素的点击效果  
+        // })  
+          
+  
+        // jQuery1.7的on绑定方法,替代了以往的bind、live等方法，内部自动含有事件委托机制  
+        // $(selector).on(event,childSelector,data,function,map)   on方法的语法  
+        // $(selector).on(event,childSelector,function(){})        on方法语法，绑定在父元素上 事件，子选择器，回调函数  
+        $("#myTable").on('click','li',function(){  
+            alert($(this).html());  
+        })  
+    })  
+</script>  
+</html>

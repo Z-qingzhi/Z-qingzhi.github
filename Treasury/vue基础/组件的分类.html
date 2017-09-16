@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>定义组件的两种方式</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="itany">
+		<my-hello></my-hello>
+		<my-world></my-world>
+	</div>
+</body>
+<script>
+	/*全局组件，可以在所有的vue实例中使用*/
+	Vue.component('my-hello',{
+		template:'<h3>{{name}}</h3>',
+		data:function(){
+			return {
+				name:'alice'
+			}
+		}
+	})
+
+
+	/*局部组件，只能在当前vue实例中使用*/
+	var vm = new Vue({
+		el:'#itany',
+		data:{
+			name:'cd'
+		},
+		components:{//局部组件
+			'my-world':{
+				template:'<h3>{{age}}</h3>',
+				data(){
+					return{
+						age:25
+					}
+				}
+			}
+		}
+	});
+</script>
+</html>

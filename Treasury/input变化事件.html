@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<body>
+	<div id="box"></div>
+	<input type="text" id="input">
+</body>
+<script>
+	// var a ={};
+	// new Object();
+	Object.prototype.i= function(){
+		console.log(1);
+	}
+	var box = document.getElementById('box');
+
+	
+
+	$('#input').on("input",function(e){
+		  e.preventDefault();
+		$('#input').i();
+		return false;
+	})
+</script>
+</html>

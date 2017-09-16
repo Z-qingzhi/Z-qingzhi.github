@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.clearfix{float:left;width:100px;height:100px;background: red;}
+		/*.outer:after{
+		     content:".";        
+		     display:block;        
+		     height:0;        
+		     clear:both;        
+		     visibility:hidden;        
+
+		}*/
+		.clearfix:before{content:".";display:block;height:0;clear:both;visibility:hidden;}
+	</style>
+</head>
+<body>
+	<div class="clearfix">
+		
+	</div>
+	<div style="clear:both"></div>
+	<div style="width:400px;height:400px;background: green;"></div>
+</body>
+</html>

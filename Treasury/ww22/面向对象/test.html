@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+	
+	<style>
+           .shadebox{width:300px;height:300px;position: relative;}
+           .content{width:100px;height:100px;background: #ccc;z-index: 99;position: absolute;}
+           .shade{width:100%;height:100%;background: red;z-index: 98;}
+	</style>
+</head>
+<body>
+	<div class="shadebox">
+		<div class="content"></div>
+		<div class="shade"></div>
+	</div>
+</body>
+</html>
+<script>
+		$(function(){
+            $(".shade").on("click",function(){
+            	$(".shadebox").remove();
+            })
+		})
+	</script>

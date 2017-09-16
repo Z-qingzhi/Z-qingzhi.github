@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<title>Document</title>
+	<style>
+	*{margin:0;padding:0;}
+		#div1{width:100px;height:100px;background-color: red;position: absolute;}
+		#div3{width:100px;height:100px;background-color: yellow;position: absolute;left:200px;}
+	</style>
+
+</head>
+<body>
+	<div id="div1"></div>
+</body>
+<script>
+		window.onload = function(){
+			 var oDiv = document.getElementById('div1');
+			 var disX = 0;
+			 var disY = 0;
+			 var ifBool = false; //判断鼠标是否按下
+			
+			function start(ev){
+				// ev.stopPropagation();
+				ifBool = true;
+				var ev = ev || window.event;
+				var winX = getPosition(oDiv).left;
+				var dixLeft = getPosition(oDiv).left;
+				var dixTop = getPosition(oDiv).top;
+				try {
+			　　	var a = ev.changedTouches[0].clientX;
+					var a_ = ev.changedTouches[0].clientY;
+			　　} catch(error) {
+			　　	var a = ev.clientX;
+					var a_ = ev.clientY;
+			　　}
+			 	disX = a - dixLeft;
+			 	disY = a_ - dixTop;
+				console.log('鼠标按下');
+			}
+			var move = function(ev) {
+				ev.preventDefault();
+				console.log('鼠标移动');
+				if(ifBool){
+					try {
+				　　	var a = ev.changedTouches[0].clientX;
+						var a_ = ev.changedTouches[0].clientY;
+				　　} catch(error) {
+				　　	var a = ev.clientX;
+						var a_ = ev.clientY;
+				　　}
+					var ev = ev || window.event;
+					var L = a - disX;
+					var T = a_ - disY;
+					if(L<0){
+						L = 0;
+					}else if(L>document.documentElement.clientWidth - oDiv.offsetWidth){
+						L = document.documentElement.clientWidth - oDiv.offsetWidth;
+					}
+
+					if(T<0){
+						T = 0;
+					}else if(T>document.documentElement.clientHeight - oDiv.offsetHeight){
+						T = document.documentElement.clientHeight - oDiv.offsetHeight
+					}
+					oDiv.style.left = L + 'px';
+					oDiv.style.top = T + 'px';
+				}
+				
+			}
+			var end = function(e) {
+				console.log("鼠标弹起")
+				move = null;
+				end = null;
+				ifBool = false;
+			}
+			
+			 oDiv.addEventListener("touchstart", start);
+             oDiv.addEventListener("mousedown", start);
+			 window.addEventListener("touchmove", move);
+             window.addEventListener("mousemove", move);
+			 window.addEventListener("touchend", end);
+			 window.addEventListener("mouseup", end);
+			 function getPosition(node) {
+				var left = node.offsetLeft; //获取元素相对于其父元素的left值var left
+				var top = node.offsetTop;
+				current = node.offsetParent; // 取得元素的offsetParent
+				　 // 一直循环直到根元素
+				　　
+				while(current != null) {　　
+					left += current.offsetLeft;　　
+					top += current.offsetTop;　　
+					current = current.offsetParent;　　
+				}
+				return {
+					"left": left,
+					"top": top
+				};
+			}
+			
+
+		}
+
+		
+	</script>
+</html>

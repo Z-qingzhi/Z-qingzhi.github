@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	window.onload = function(){
+		function createperson(name,sex){
+			this.name = name;
+			this.age = sex;
+
+		}
+		createperson.prototype.show = function(){
+			alert(this.name);
+		}
+
+		var l1 = new createperson('小明','男');
+		l1.show();
+
+		function create2(name,sex,job){
+			createperson.call(this,name,sex);
+			this.job= job;
+
+		}
+		
+		// create2.prototype = createperson.prototype;
+		extend(create2.prototype,createperson.prototype)
+
+		create2.prototype.showjob = function(){
+			alert(this.job);
+		}
+		
+		var l2 = new create2('黄晓明','男','演员');
+		l2.show();
+		console.log(l1)
+
+		function extend(obj1,obj2){
+			for(var attr in obj2){
+				obj1[attr] = obj2[attr];
+			}
+		}
+	}
+</script>
+</html>

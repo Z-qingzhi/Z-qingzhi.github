@@ -1,0 +1,33 @@
+CreateDirectory: "C:\Program Files\FSCapture" created
+File: overwriteflag=0, allowskipfilesflag=2, name="FSCapture.exe"
+File: wrote 1291264 to "C:\Program Files\FSCapture\FSCapture.exe"
+File: overwriteflag=0, allowskipfilesflag=2, name="FSCaptureHelp.chm"
+File: wrote 122966 to "C:\Program Files\FSCapture\FSCaptureHelp.chm"
+File: overwriteflag=0, allowskipfilesflag=2, name="FSCrossHair.exe"
+File: wrote 422400 to "C:\Program Files\FSCapture\FSCrossHair.exe"
+File: overwriteflag=0, allowskipfilesflag=2, name="FSLogo.png"
+File: wrote 16493 to "C:\Program Files\FSCapture\FSLogo.png"
+File: overwriteflag=0, allowskipfilesflag=2, name="FSRecorder.exe"
+File: wrote 1296896 to "C:\Program Files\FSCapture\FSRecorder.exe"
+File: overwriteflag=0, allowskipfilesflag=2, name="Portable.db"
+File: wrote 454 to "C:\Program Files\FSCapture\Portable.db"
+File: overwriteflag=0, allowskipfilesflag=2, name="fsc.db"
+File: wrote 5296 to "C:\Program Files\FSCapture\fsc.db"
+CreateDirectory: "C:\Program Files\FSCapture" (1)
+Skipping section: ""
+Section: "创建桌面快捷方式"
+detailprint: 正在创建桌面快捷方式
+CreateDirectory: "C:\Program Files\FSCapture" (1)
+CreateShortCut: out: "C:\Users\Administrator\Desktop\FSCapture.lnk", in: "C:\Program Files\FSCapture\FSCapture.exe ", icon: ,0, sw=0, hk=0
+Skipping section: ""
+Section: "-"
+Section: "开始菜单程序组"
+detailprint: 正在创建开始菜单程序组快捷方式
+CreateDirectory: "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\FSCapture" (0)
+CreateDirectory: "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\FSCapture" created
+CreateShortCut: out: "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\FSCapture\FSCapture.lnk", in: "C:\Program Files\FSCapture\FSCapture.exe ", icon: ,0, sw=0, hk=0
+CreateShortCut: out: "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\FSCapture\访问 绿色下载吧.lnk", in: "http://www.xiazaiba.com ", icon: C:\Windows\system32\url.dll,0, sw=0, hk=0
+CreateShortCut: out: "C:\Users\Administrator\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\FSCapture\卸载 FSCapture.lnk", in: "C:\Program Files\FSCapture\Uninst.exe ", icon: ,0, sw=0, hk=0
+Section: ""
+created uninstaller: 160235, "C:\Program Files\FSCapture\Uninst.exe"
+settings logging to 0

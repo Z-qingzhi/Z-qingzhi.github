@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="text-H5.css">
+	<link rel="stylesheet" type="text/css" href="h5ComponentBase.css">
+
+	<script src="jquery-2.2.0.js"></script>
+	<script src="jquery.fullPage.min.js"></script>
+	<script src="h5ComponentBase.js"></script>
+	<script src="text-H5.js"></script>
+	<title>Document</title>
+	<style>
+		body{
+			margin:0;
+			padding:0;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+<script>
+	$(function(){
+		var h5 = new H5();
+		h5.addPage('face','首页')
+			.addComponent('logo',{
+				text:'logo',
+				width:400,
+				height:100,
+				css:{backgroundColor:'red',top:50,
+				opacity:0},
+				animateIn:{top:80,opacity:1},
+				animateOut:{top:0,opacity:0},
+				center:true
+			})
+			.addComponent('slogan',{
+				text:'slogan',
+				width:400,
+				height:100,
+				css:{backgroundColor:'red',bottom:50,
+				opacity:0},
+				animateIn:{bottom:80,opacity:1},
+				animateOut:{bottom:0,opacity:0},
+				center:true
+			})
+		h5.addPage('desc','核心理念')
+			.addComponent('caption',{
+				text:'核心理念',
+				width:400,
+				height:100,
+				css:{backgroundColor:'green',bottom:50,
+				opacity:0},
+				animateIn:{bottom:80,opacity:1},
+				animateOut:{bottom:0,opacity:0},
+				center:true
+			})
+		h5.addPage('page-3','课程方向分布')
+			.addComponent('caption',{
+				text:'课程方向分布',
+				width:400,
+				height:100,
+				css:{backgroundColor:'green',bottom:50,
+				opacity:0},
+				animateIn:{bottom:80,opacity:1},
+				animateOut:{bottom:0,opacity:0},
+				center:true
+			})
+		.loader();
+	})
+</script>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,user-scalable=no" />
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#box{
+			width:10rem;
+			height:1rem;
+			background-color: red;
+		}
+	</style>
+</head>
+<script type="text/javascript">
+	(function(){
+	 	setRem() 
+	 	window.addEventListener('orientation' in window?"deviceorientation":"resize",setRem);//判断
+	 	function setRem(){
+	 		var html=document.documentElement;
+	 		var hWidth=html.getBoundingClientRect().width;
+	 		html.style.fontSize=hWidth/10+"px";
+	 	}
+
+	})();
+</script>
+<body>   
+	<div id="box"></div>
+</body>
+</html>

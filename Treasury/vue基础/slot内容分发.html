@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>非父子组件间的通信</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="itany">
+		<!-- <my-hello>243123</my-hello> -->
+		<my-hello>
+			<ul slot="s1">
+				<li>aaa</li>
+				<li>bbb</li>
+				<li>ccc</li>
+			</ul>
+			<ol slot="s2">
+				<li>111</li>
+				<li>222</li>
+				<li>333</li>
+			</ol>
+		</my-hello>
+
+	</div>
+
+	<template id="hello">
+		<div>
+			<slot name="s2"></slot>
+			<h3>welcome to itany</h3>
+			<!-- <slot>如果没有原内容显示该内容</slot> -->
+			<slot name="s1"></slot>
+
+		</div>
+	</template>
+
+</body>
+<script>
+	
+
+	var vm = new Vue({ //父组件
+		el:'#itany',
+		components:{
+			'my-hello':{
+				template:'#hello'
+			}
+		}
+			
+	});
+</script>
+</html>

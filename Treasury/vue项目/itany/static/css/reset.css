@@ -1,0 +1,17 @@
+*{margin:0px;padding:0px;}
+ul,li{list-style: none;}
+a {text-decoration:none;}
+a:link {color:#000000;text-decoration:none;}     /* 未被访问的链接     */
+a:visited {color:#000000}  /* 已被访问过的链接    */
+/*a:hover {text-decoration:underline}    /* 鼠标悬浮在上的链接  */*/
+a:active {color:#000000}   /* 鼠标点中激活链接    */
+body{ -webkit-tap-highlight-color:rgba(0,0,0,0); }
+
+/*下面是解决ios上去除微信点击蓝色边框 */
+/*a:focus,
+input:focus,
+p:focus,
+div:focus{
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+-webkit-user-modify:read-write-plaintext-only; 
+}*/

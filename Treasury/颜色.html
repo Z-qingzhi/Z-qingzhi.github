@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<button id="btn" onclick="getColor()">点击</button>
+</body>
+<script>
+	function getColor(){  
+	    var colorElements = "0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f";  
+	    var colorArray = colorElements.split(",");  
+	    var color ="#";  
+	    for(var i =0;i<6;i++){  
+	        color+=colorArray[Math.floor(Math.random()*16)];  
+	    }  
+	    alert(color)
+	    return color;  
+	}
+</script>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<style>
+	table {  
+	  width: 400px;  
+	  height:240px;  
+	  border:1px solid blue;  
+	}  
+	  
+	table td{  
+	  border:1px solid black;  
+	  width:100px;  
+	} 
+</style>
+<body>
+	
+</body>
+<script>
+	$(document).ready(function(){  
+    var row = 10, col = 4;  
+    var $table = $("<table></table>");  
+      
+    for(var i=0;i<row;i++){  
+        var $tr = $("<tr></tr>");  
+        for(var j=0;j<col;j++){  
+            $("<td></td>").appendTo($tr);  
+        }  
+        $table.append($tr);  
+    }  
+    $("body").append($table);  
+    
+  //使用.bind为每个匹配的click事件绑定处理函数  
+  $("table td").bind("click", function(event){//<span style="white-space:pre">  </span>（2）处  
+    $(this).css({backgroundColor:"#00F"});  
+  });  
+    
+  $("table").bind("click", function(event){  
+    alert("ABC");   
+  });  
+    
+  //添加一个button  
+  var $but = $("<button>阻止td的默认行为和事件向上冒泡</button>").appendTo("body");  
+    
+  //阻止td的默认行为和事件向上冒泡  
+  $but.bind("click", function(){   
+      //这里返回false有 两个含义,阻止单元格的默认行为和事件向上冒泡  
+    $("table td").bind("click", function(){ return false; }); //（1）处  
+  });  
+});  
+	
+</script>
+</html>

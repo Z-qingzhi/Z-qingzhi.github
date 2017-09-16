@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="animate.css">
+	<script src="vue.js"></script>
+	<style>
+		p{
+			width: 300px;
+			height:300px;
+			margin:0 auto;
+			background-color:red;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="itany">
+	<button @click="flag=!flag">点我</button>
+	<hr>
+		<transition enter-active-class="animated bounceInLeft" leave-active-class="animated bounceOutLeft">
+			<p v-show="flag">网博</p>
+			<p v-show="flag">网博</p>
+		</transition>
+	</div>
+	
+</body>
+<script>
+	var vm = new Vue({
+		el:'#itany',
+		data:{
+			flag:false
+		},
+		methods:{
+			beforeEnter(){
+				// alert('动画进入之前');
+			},
+			enter(){
+				// alert('动画进入');
+			},
+			afterEnter(el){
+				// alert('动画进入之后');
+				// el.style.background='blue';
+			},
+			beforeLeave(){
+				// alert('动画离开之前');
+			},
+			leave(){
+				// alert('动画离开');
+			},
+			afterLeave(){
+				// alert('动画离开之后');
+			},
+		}
+	});
+</script>
+</html>

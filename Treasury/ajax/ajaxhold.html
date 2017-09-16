@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function ajaxHold(DATA,callBackFn,fn,errorFn){
+//	try{
+//		if(DATA.DATATYPE.toLowerCase() == "json" ) {DATA.DATATYPE="text"};
+//		}catch(e){}
+
+	try{alertInfo("请稍后","<center><img src='../tlg/img/ajax-loader.gif'></center>");
+	    $("#_info_").prev().hide();
+        $("#_info_").next().hide();
+        }catch(e){}
+ setTimeout(function(){
+	try{
+		DATA["key"]=window.external.setKey("0",window.top.getKey());
+	}catch(e){}
+	
+	$.ajax( {  
+		     timeout : 60000, //超时时间设置，单位毫秒
+			 type : DATA.TYPE,   
+			 url : DATA.URL,
+			 data: DATA,
+		 dataType:DATA.DATATYPE,   
+ 		 async:true, 
+			 success : function(msg) {
+				 $("#_info_").dialog("close");
+				 if("string"==typeof(msg)){
+					 try{
+			    	 msg = decodeURIComponent(msg);	}catch(e){}		    	
+			    	 msg = msg.replace(/\+/gi," ");
+			    	 var fun = new Function("return"+msg); 
+	                 msg = fun();
+//			    	 msg = eval('('+msg+')');
+	                 
+			     }
+     callBackFn(msg,DATA,fn);
+     },
+     complete:function(XMLHttpRequest,status){
+    	　　if(status=='timeout'){//超时,status还有success,error等值的情况
+    		 $("#_info_").dialog("close");
+ 	　　　　  　  alertInfo("出错","请求超时，请稍后重试！");
+ 	　　　　  　  if(errorFn){
+ 	　　　　  　  	errorFn();
+ 	　　　　  　  }
+ 	　　　　}
+    	　　if(status=='error'){//超时,status还有success,error等值的情况
+    		 $("#_info_").dialog("close");
+ 	　　　   　　  alertInfo("出错","服务器无响应，请20秒后重试");
+ 	　　　   　　    if(errorFn){
+ 	 	　　　　  　  	errorFn();
+ 	 	　　　　  　  }
+ 	　　　　}
+    	 
+     }
+
+	}); 
+	},500);
+}
+</script>
+</html>

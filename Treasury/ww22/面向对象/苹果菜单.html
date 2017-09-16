@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<script>
+/*
+	Math.pow(3,2) //3的平方
+	Math.pow(2,3) //2的立方
+
+	Math.sqrt(9) //9的开方
+	Math.pow(9,1/3)//9的开立方
+	*/
+</script>
+<style>
+	*{padding:0;margin:0;}
+	#div1{width:100%;height:auto;position: absolute;bottom:0;text-align: center;}
+	#div1 img{width:100px;}
+
+</style>
+<script>
+	window.onload = function(){
+		var aInput = document.getElementsByTagName('input');
+		var oDiv = document.getElementById('div1');
+		var aImg = oDiv.getElementsByTagName('img');
+
+		for(var i=0;i<aImg.length;i++){
+			var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y = aImg[i].offsetTop + aImg[i].offsetHeight/2 +oDiv.offsetTop;
+			aInput[i].value = 'x轴：'+x+'y轴：'+y;
+
+		}
+
+		document.onmousemove = function(ev){
+			var ev = ev || window.event;
+
+			for(var i=0;i<aImg.length;i++){
+			var x = aImg[i].offsetLeft + aImg[i].offsetWidth/2;
+			var y = aImg[i].offsetTop + aImg[i].offsetHeight/2 +oDiv.offsetTop;
+			
+			var a = ev.clientX - x;
+			var b = ev.clientY -y;
+
+			var c  = Math.sqrt(Math.pow(a,2)+Math.pow(b,2));
+			var scale = 1- c/1000;
+			if(scale<0.6){
+				scale = 0.5;
+			}
+			aInput[i].value = scale;
+			aImg[i].style.width = scale*200 + 'px';
+
+		}
+
+
+		}
+	}
+
+</script>
+<body>
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<div id="div1">
+		<img src="image/1.png" alt="">
+		<img src="image/2.png" alt="">
+		<img src="image/3.png" alt="">
+		<img src="image/4.png" alt="">
+		<img src="image/5.png" alt="">
+	</div>
+</body>
+</html>

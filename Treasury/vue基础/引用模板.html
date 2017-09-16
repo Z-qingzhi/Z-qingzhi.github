@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>引用模板</title>
+	<script src="vue.js"></script>
+</head>
+<body>
+	<div id="itany">
+		<my-world></my-world>
+		<my-world></my-world>
+	</div>
+	
+	<!-- template标签内部有且只有一个根元素 -->
+	<template id="wbs">
+		<div>
+			<h3>{{age}}</h3>
+			<ul>
+				<li v-for="value in arr">{{value}}</li>
+			</ul>
+		</div>
+	</template>
+	
+</body>
+<script>
+	var vm = new Vue({
+		el:'#itany',
+		data:{
+			name:'cd'
+		},
+		components:{//局部组件
+			'my-world':{
+				name:'wbs17022',//指定组件的名称，默认为标签的名称，可以不设置
+				template:'#wbs',
+				data(){
+					return{
+						age:'欢迎来到深圳',
+						arr:['tom','jack','mike']
+					}
+				}
+			}
+		}
+	});
+</script>
+</html>

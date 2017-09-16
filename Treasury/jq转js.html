@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<body>
+	<div id="lucy">111</div>
+</body>
+</html>
+<script>
+	$(function(){
+		var $lucy=$("#lucy"); //jQuery对象 
+		var lucy=$lucy.get(0); //DOM对象
+		lucy.style.color = '#699';
+	})
+</script>

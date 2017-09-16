@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!-- 2.0.3 -->
+	<script src="jquery-2.2.0.js"></script>
+</head>
+<script>
+	function Aaa(){}
+	Aaa.prototype.init = function(){};
+	Aaa.prototype.css = function(){};
+
+	var a1 = new Aaa();
+	a1.init();
+	a1.css();
+
+
+
+	function jQuery(){
+		return new jQuery.prototype.init();
+	}
+	jQuery.prototype.init = function(){
+
+	}
+	jQuery.prototype.css = function(){
+		
+	}
+	jQuery.prototype.init.prototype = jQuery.prototype;
+	jQuery().css();
+
+</script>
+<body>
+	
+</body>
+</html>
